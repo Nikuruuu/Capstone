@@ -8,7 +8,6 @@ import {
   getAllBatchNotExpired,
   postIn,
   getAllIn,
-  getAllInAutoComplete,
   updateIn,
   deleteIn,
   postDispense,
@@ -39,7 +38,6 @@ router.get('/getAllBatchNotExpired', getAllBatchNotExpired);
 // IN
 router.post('/postIn', logActionsMiddleware, postIn);
 router.get('/getAllIn', getAllIn);
-router.get('/getAllInAutoComplete', getAllInAutoComplete);
 router.put('/updateIn/:id', logActionsMiddleware, updateIn);
 router.delete('/deleteIn/:id', logActionsMiddleware, deleteIn);
 // DISPENSE

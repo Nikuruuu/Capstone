@@ -49,7 +49,7 @@ const schema = new mongoose.Schema(
       required: true,
     },
     medicine: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'medicineIn',
     },
     quantity: {

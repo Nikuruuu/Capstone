@@ -30,7 +30,6 @@ import {
   adjustmentTypeOption,
   statusOptions,
 } from '../../others/dropDownOptions';
-import AutoComplete from '../MedicineAutoComplete.jsx';
 
 const Form = (props) => {
   const { open, onClose, initialData, addNewRecord, selectedRecord, onUpdate } =
@@ -95,13 +94,13 @@ const Form = (props) => {
       );
       if (response.data && response.data._id) {
         addNewRecord(response.data);
-        showSnackbar('Successfully adjusted', 'success');
+        showSnackbar('Successfully added new record', 'success');
         handleClose();
       } else {
         showSnackbar('Operation failed', 'error');
       }
     } catch (error) {
-      handleError(error, 'adding adjustment');
+      handleError(error, 'adding record');
     }
   };
 
@@ -113,13 +112,13 @@ const Form = (props) => {
       );
       if (response.data) {
         onUpdate(response.data);
-        showSnackbar('Adjustment successfully updated', 'success');
+        showSnackbar('Record successfully updated', 'success');
         handleClose();
       } else {
         showSnackbar('Update operation failed', 'error');
       }
     } catch (error) {
-      handleError(error, 'updating adjustment');
+      handleError(error, 'updating record');
     }
   };
 
@@ -133,15 +132,6 @@ const Form = (props) => {
     } catch (error) {
       handleError(error, 'add or updating');
     }
-  };
-
-  const handleMedicineSelect = (data) => {
-    if (!data) {
-      reset(); // This assumes you've defined the default values at useForm hook initialization
-      return;
-    }
-    setValue('itemId', data.itemId);
-    setValue('batchId', data.batchId);
   };
 
   const handleClose = () => {
@@ -183,16 +173,11 @@ const Form = (props) => {
         className="overflow-auto"
       >
         <DialogTitle>
-          {selectedRecord ? 'Edit Adjustment' : 'Add Adjustment'}
+          {selectedRecord ? 'Edit Record' : 'Add Record'}
         </DialogTitle>
         <form onSubmit={handleSubmit(handleSaveOrUpdate)}>
           <DialogContent>
-            <DialogContentText>Enter adjustment details:</DialogContentText>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={12}>
-                <AutoComplete onSelect={handleMedicineSelect} displayBatch={true}/>
-              </Grid>
-            </Grid>
+            <DialogContentText>Enter record details:</DialogContentText>
             <Divider />
             <Grid container spacing={2}>
               <Grid item xs={12} md={12}>
